@@ -1,13 +1,21 @@
-import React from "react";
+import React from 'react';
 
 function Item({ name, category }) {
-  return (
-    <li className="">
-      <span>{name}</span>
-      <span className="category">{category}</span>
-      <button className="add">Add to Cart</button>
-    </li>
-  );
+	const [isInCart, setIsInCart] = React.useState(false);
+	const addToCart = () => {
+		setIsInCart(!isInCart);
+	};
+	return (
+		<li className={isInCart ? 'in-cart' : ' '}>
+			<span>{name}</span>
+			<span className="category">{category}</span>
+			<button
+				className={!isInCart ? 'add' : 'remove'}
+				onClick={addToCart}>
+				{!isInCart ? 'Add to Cart' : 'Remove From Cart'}
+			</button>
+		</li>
+	);
 }
 
 export default Item;
